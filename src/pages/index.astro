@@ -2,23 +2,99 @@
 import { fetchPosts } from "../lib/api";
 
 const posts = await fetchPosts();
-
 ---
 
 <html>
+  <body>
+    <h1>Testing Netlify Issue</h1>
+    <br />
+    <hr />
 
+    <br />
+    <p>When I run netlify dev in the terminal it hangs with this message</p>
+    <p>
+      <br />
+      <em
+        >Waiting for framework port 3000. This can be configured using the
+        'targetPort' property in the netlify.toml</em
+      >
+      <br />
 
-<body>
-    
-<h1>Testing Netlify Issue</h1>
-
-<p>When I run netlify dev in the terminal it hangs with this message</p>
-<code>
-
-    
-</code>
-
-</body>
-
-
+      <hr />
+      <p>
+        And here's the detailed message after some time with version 18 of Node
+      </p>
+      <p>
+        ✖ Waiting for framework port 3000. This can be configured using the
+        'targetPort' property in the netlify.toml ◈ Netlify Dev could not start
+        or connect to localhost:3000. ◈ Please make sure your framework server
+        is running on port 3000 Internal error during "dev.command"
+        ──────────────────────────────────────────────────────────────── Error
+        message Error: Timed out waiting for port '3000' to be open Error
+        location During dev.command at startFrameworkServer
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/src/utils/framework-server.mjs:53:13)
+        at process.processTicksAndRejections
+        (node:internal/process/task_queues:95:5) at async devCommand
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/src/utils/run-build.mjs:66:27)
+        at async coreStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/get.js:19:13)
+        at async fireCoreStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/core_step.js:9:89)
+        at async tFireStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/time/main.js:18:63)
+        at async runStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_step.js:30:270)
+        at async pReduce.index
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_steps.js:12:325)
+        at async runSteps
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_steps.js:11:186)
+        at async runBuild
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/core/build.js:346:119)
+        Resolved config build: command: npm run build commandOrigin: ui publish:
+        /home/alimbolar/WebDev/projects/netlify-test/dist publishOrigin: ui ›
+        Error: Could not start local development server Timed out waiting for
+        port '3000' to be open Error: Timed out waiting for port '3000' to be
+        open at startFrameworkServer
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/src/utils/framework-server.mjs:53:13)
+        at process.processTicksAndRejections
+        (node:internal/process/task_queues:95:5) at async devCommand
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/src/utils/run-build.mjs:66:27)
+        at async coreStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/get.js:19:13)
+        at async fireCoreStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/core_step.js:9:89)
+        at async tFireStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/time/main.js:18:63)
+        at async runStep
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_step.js:30:270)
+        at async pReduce.index
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_steps.js:12:325)
+        at async runSteps
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/steps/run_steps.js:11:186)
+        at async runBuild
+        (file:///home/alimbolar/.nvm/versions/node/v18.13.0/lib/node_modules/netlify-cli/node_modules/@netlify/build/lib/core/build.js:346:119)
+      </p>
+      <br />
+      <p>
+        However it builds fine on localhost and on netlify. It even runs the <strong
+          >npm run dev</strong
+        > command fine. It's just the <strong>netlify dev</strong> command that it
+        doesn't seem to like.
+      </p>
+      <br />
+      <p>
+        Here's the out of the fetch request to confirm that the output of the
+        fetch request is working fine.
+      </p>
+      <br />
+      <br />
+      <ul>
+        {
+          posts.map((post) => {
+            return <li>{post.title.rendered}</li>;
+          })
+        }
+      </ul>
+    </p>
+  </body>
 </html>
